@@ -45,51 +45,53 @@
   }
 
   function remove(number) {
-    let currentNode = get(number);
-    let previousNode = get(number - 1);
-    console.log(previousNode);
-    for (let i = 0; i < number; i++){
-      previousNode.next = currentNode.next;
-    }
-      if(currentNode.next === null){
-        return false;
-      }
-    // while(number < currentNode.length) {
-    //   if (currentNode[number].next === null){
-    //     return false;
-    //   }
-    //   number++;
-    // }
-
-    return currentNode.next;
-  }
-
-  function get(number) {
     let currentNode = linkedList;
+    let previousNode = linkedList;
+    let count = 0;
 
-    for (let i = 0; i < number; i++) {
-      if(currentNode.next === null) {
-        return false;
-      }
+    if(number === 0) {
+      linkedList = currentNode.next;
+    }
+    while(count < number && currentNode.next) {
+      previousNode = currentNode;
       currentNode = currentNode.next;
+      count++;
     }
 
-    return currentNode;
-  }
+    previousNode.next = currentNode.next;
 
-  function insert() {
-
-  }
-
-  return {
-    getHead : getHead,
-    getTail : getTail,
-    add : add,
-    remove : remove,
-    get : get,
-    insert : insert
-  };
+    if(count < number && !currentNode.next) {
+      return false;
+    }
 }
+
+
+    function get(number) {
+      let currentNode = linkedList;
+
+      for (let i = 0; i < number; i++) {
+        if(currentNode.next === null) {
+          return false;
+        }
+        currentNode = currentNode.next;
+      }
+
+      return currentNode;
+    }
+
+    function insert() {
+
+    }
+
+    return {
+      getHead : getHead,
+      getTail : getTail,
+      add : add,
+      remove : remove,
+      get : get,
+      insert : insert
+    };
+  }
 // console.log(ll.getHead()); //null
 // ll.add('cat');
 // console.log(ll.getHead()); //cat
@@ -100,3 +102,7 @@
 // console.log(ll.get(1)); //bird
 // ll.remove(2);
 // console.log(ll.getTail()); //bird
+//     let count = 0;
+//     let currentNode = linkedList;
+//     let previousNode = linkedList;
+
