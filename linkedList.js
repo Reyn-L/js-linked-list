@@ -36,7 +36,6 @@
       linkedList = node;
       return node;
 
-    }else{
     } while (currentNode.next) {
       currentNode = currentNode.next;
     }
@@ -57,52 +56,68 @@
       currentNode = currentNode.next;
       count++;
     }
-
     previousNode.next = currentNode.next;
-
     if(count < number && !currentNode.next) {
+
       return false;
     }
-}
-
-
-    function get(number) {
-      let currentNode = linkedList;
-
-      for (let i = 0; i < number; i++) {
-        if(currentNode.next === null) {
-          return false;
-        }
-        currentNode = currentNode.next;
-      }
-
-      return currentNode;
-    }
-
-    function insert() {
-
-    }
-
-    return {
-      getHead : getHead,
-      getTail : getTail,
-      add : add,
-      remove : remove,
-      get : get,
-      insert : insert
-    };
   }
-// console.log(ll.getHead()); //null
-// ll.add('cat');
-// console.log(ll.getHead()); //cat
-// console.log(ll.getTail()); //cat
-// ll.add('Dog');
-// console.log(ll.getTail()); //dog
-// ll.insert('bird',1);
-// console.log(ll.get(1)); //bird
-// ll.remove(2);
-// console.log(ll.getTail()); //bird
-//     let count = 0;
-//     let currentNode = linkedList;
-//     let previousNode = linkedList;
+
+  function get(number) {
+    let currentNode = linkedList;
+
+    for (let i = 0; i < number; i++) {
+      if(currentNode.next === null) {
+        return false;
+      }
+      currentNode = currentNode.next;
+    }
+    return currentNode;
+  }
+
+  function insert(value, number) {
+    let currentNode = get(number);
+    let previousNode = get(number -1);
+    let node = {
+      value: value,
+      next : null
+    };
+    if(number === 0) {
+      node.next = linkedList;
+      linkedList = node;
+    } else if (number < 0) {
+      return false;
+    } else if (currentNode.next === null) {
+      node.next = currentNode;
+      previousNode.next = node;
+      return node;
+    } else if (currentNode) {
+      node.next = currentNode;
+      previousNode.next = node;
+      return node;
+    }else {
+      return false;
+    }
+  }
+
+return {
+  getHead : getHead,
+  getTail : getTail,
+  add : add,
+  remove : remove,
+  get : get,
+  insert : insert
+};
+
+//console.log(getHead()); //null
+//add('cat');
+//console.log(getHead()); //cat
+//console.log(getTail()); //cat
+//add('Dog');
+//console.log(getTail()); //dog
+//insert('bird',1);
+// console.log(get(1)); //bird
+//remove(2);
+//console.log(getTail()); //bird
+}
 
